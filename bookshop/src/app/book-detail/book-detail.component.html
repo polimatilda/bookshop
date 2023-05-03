@@ -1,0 +1,32 @@
+<div
+  *ngIf="selectedBook"
+  class="my-5 d-flex align-items-center justify-content-center flex-column"
+>
+  <div class="row w-100 mb-5">
+    <div
+      class="col-lg-5 d-flex align-items-center justify-content-center flex-column"
+    >
+        <img [src]="'assets/img/' + selectedBook.imgUrl + '.jpg'" class="book-img"/>
+    </div>
+    <div class="col-lg-7 d-flex flex-column my-3">
+      <h1>{{ selectedBook.title }}</h1>
+      <h2>{{ selectedBook.author }}</h2>
+      <hr />
+      <p class="book-text">{{ selectedBook.text }}</p>
+      <div class="btn-div">
+        <h3 class="price">{{ selectedBook.price | number }} Ft</h3>
+        <button class="btn btn-primary cart-btn my-2">Kosárba</button>
+      </div>
+    </div>
+  </div>
+  <div class="row w-100 my-2 book-details">
+    <span>
+      <h4>Könyvadatok:</h4>
+      <h6>Kiadó: {{ selectedBook.publisher }}</h6>
+      <h6>Oldalszám: {{ selectedBook.pageNumber }}</h6>
+      <h6>Kötés: {{ selectedBook.bound }}</h6>
+      <h6>ISBN: {{ selectedBook.isbn }}</h6>
+      <h6>Kiadás éve: {{ selectedBook.yearPublished }}</h6>
+    </span>
+  </div>
+</div>

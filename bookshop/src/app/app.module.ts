@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BooksModule } from './books/books.module';
 import { BooksService } from './books.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BookDetailModule } from './book-detail/book-detail.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BooksModule,
     HttpClientModule,
+    BookDetailModule
   ],
   providers: [BooksService],
   bootstrap: [AppComponent]

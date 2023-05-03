@@ -11,12 +11,12 @@ export class BooksService {
   constructor(private readonly http: HttpClient) {}
 
   private readonly url = environment.backendUrl;
+  booksList: BookItem[] = [];
 
   getAllBooks(): Observable<BookItem[]> {
     return this.http.get<BookItem[]>(`${this.url}/books`).pipe(
       map((data) => {
-        console.log(data);
-        return data.map((item) => ({
+        this.booksList = data.map((item) => ({
           id: item.id,
           title: item.title,
           author: item.author,
@@ -30,7 +30,17 @@ export class BooksService {
           pageNumber: item.pageNumber,
           yearPublished: item.yearPublished,
         }));
+        return this.booksList;
       })
     );
+  }
+
+  // getBookById(id: number): BookItem | null {
+  //   console.log(this.booksList.find((book) => book.id === id) || null)
+  //   return this.booksList.find((book) => book.id === id) || null;
+  // }
+
+  getBookById(id: number): Observable<BookItem | null> {
+    return this.http.get<BookItem | null>(`${this.url}/books/${id}`);
   }
 }
