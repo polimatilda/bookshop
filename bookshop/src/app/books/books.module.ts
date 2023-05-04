@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { BooksComponent } from './books.component';
 import { BookItemComponent } from './book-item/book-item.component';
 import { BooksRoutingModule } from './books-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [BooksComponent, BookItemComponent],
-  imports: [
-    CommonModule, BooksRoutingModule
-  ]
+  imports: [CommonModule, BooksRoutingModule, FormsModule],
 })
-export class BooksModule { }
+export class BooksModule {}

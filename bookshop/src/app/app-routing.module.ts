@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BooksComponent } from './books/books.component';
-import { BookDetailComponent } from './book-detail/book-detail.component';
 
 const routes: Routes = [
   {
     path: 'books',
+    loadChildren: () =>
+      import('./books/books.module').then((m) => m.BooksModule),
+  },
+  {
+    path: 'books/filter',
     loadChildren: () =>
       import('./books/books.module').then((m) => m.BooksModule),
   },
@@ -16,7 +19,6 @@ const routes: Routes = [
         (m) => m.BookDetailModule
       ),
   },
-  // {path: 'book-detail/:id', component: BookDetailComponent}
 ];
 
 @NgModule({

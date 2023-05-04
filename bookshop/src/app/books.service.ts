@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { BookItem } from './models/book-item.interface';
 
 @Injectable({
@@ -11,10 +11,44 @@ export class BooksService {
   constructor(private readonly http: HttpClient) {}
 
   private readonly url = environment.backendUrl;
+  private ageCategorySource = new BehaviorSubject<string>('');
+  ageCategory$ = this.ageCategorySource.asObservable();
   booksList: BookItem[] = [];
 
-  getAllBooks(): Observable<BookItem[]> {
-    return this.http.get<BookItem[]>(`${this.url}/books`).pipe(
+  // getAllBooks(page: number, pageSize: number): Observable<{ books: BookItem[]; totalCount: number }> {
+  //   const params = {
+  //     page: page.toString(),
+  //     pageSize: pageSize.toString(),
+  //   };
+
+  //   return this.http.get<BookItem[]>(`${this.url}/books`, { params }).pipe(
+  //     map((data) => {
+  //       this.booksList = data.map((item) => ({
+  //         id: item.id,
+  //         title: item.title,
+  //         author: item.author,
+  //         bound: item.bound,
+  //         text: item.text,
+  //         price: item.price,
+  //         imgUrl: item.imgUrl,
+  //         isbn: item.isbn,
+  //         publisher: item.publisher,
+  //         ageCategory: item.ageCategory,
+  //         pageNumber: item.pageNumber,
+  //         yearPublished: item.yearPublished,
+  //       }));
+  //       return { books: this.booksList, totalCount: this.booksList.length };
+  //     })
+  //   );
+  // }
+
+  getAllBooks(page: number, pageSize: number): Observable<BookItem[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString(),
+    };
+
+    return this.http.get<BookItem[]>(`${this.url}/books`, { params }).pipe(
       map((data) => {
         this.booksList = data.map((item) => ({
           id: item.id,
@@ -35,12 +69,45 @@ export class BooksService {
     );
   }
 
-  // getBookById(id: number): BookItem | null {
-  //   console.log(this.booksList.find((book) => book.id === id) || null)
-  //   return this.booksList.find((book) => book.id === id) || null;
-  // }
-
   getBookById(id: number): Observable<BookItem | null> {
     return this.http.get<BookItem | null>(`${this.url}/books/${id}`);
   }
+
+  setAgeCategory(ageCategory: string): void {
+    this.ageCategorySource.next(ageCategory);
+  }
+
+  getBooksByAgeCategory(
+    ageCategory: string,
+    page: number,
+    pageSize: number
+  ): Observable<BookItem[]> {
+    if (!ageCategory) {
+      return this.getAllBooks(page,pageSize);
+    }
+
+    const params = {
+      ageCategory,
+      page: page.toString(),
+      pageSize: pageSize.toString(),
+    };
+    return this.http.get<BookItem[]>(`${this.url}/books`, { params });
+  }
+
+  // getBooksByAgeCategory(
+  //   ageCategory: string,
+  //   page: number,
+  //   pageSize: number
+  // ): Observable<{ books: BookItem[]; totalCount: number }> {
+  //   if (!ageCategory) {
+  //     return this.getAllBooks(page, pageSize);
+  //   }
+  
+  //   const params = {
+  //     ageCategory,
+  //     page: page.toString(),
+  //     pageSize: pageSize.toString(),
+  //   };
+  //   return this.http.get<{ books: BookItem[]; totalCount: number }>(`${this.url}/books`, { params });
+  // }
 }

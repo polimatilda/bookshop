@@ -1,4 +1,14 @@
 <div class="container my-5 d-flex">
+  <div class="row">
+    <div class="col-12 mb-3">
+      <label for="ageCategoryFilter">Filter by Age Category:</label>
+      <select class="form-select" id="ageCategoryFilter" [(ngModel)]="selectedAgeCategory" (ngModelChange)="filterBooks(selectedAgeCategory)">
+        <option value="">All</option>
+        <option value="MG">Gyermek</option>
+        <option value="YA">Ifjúsági</option>
+        <option value="AA">Felnőtt</option>
+      </select>
+    </div>
   <div class="row ">
     <div
       class="col my-2 d-flex align-items-stretch justify-content-evenly"
@@ -12,5 +22,11 @@
         [id]="book.id"
       ></app-book-item>
     </div>
+    <!-- <div class="pagination">
+      <button class="btn btn-link" (click)="goToPreviousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>{{ currentPage }}</span>
+      <button class="btn btn-link" (click)="goToNextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div> -->
+    
   </div>
 </div>
