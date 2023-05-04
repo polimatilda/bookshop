@@ -1,32 +1,47 @@
-<div class="container my-5 d-flex">
-  <div class="row">
-    <div class="col-12 mb-3">
-      <label for="ageCategoryFilter">Filter by Age Category:</label>
-      <select class="form-select" id="ageCategoryFilter" [(ngModel)]="selectedAgeCategory" (ngModelChange)="filterBooks(selectedAgeCategory)">
-        <option value="">All</option>
+<div class="container my-5 d-flex flex-column w-100">
+  <div class="d-flex alig-items-center justify-content-center mt-2 mb-5">
+    <div class="row w-50">
+      <label for="ageCategoryFilter">Szűrés korosztályra:</label>
+      <select
+        class="form-select"
+        id="ageCategoryFilter"
+        [(ngModel)]="selectedAgeCategory"
+        (ngModelChange)="filterBooks(selectedAgeCategory)"
+      >
+        <option value="">Mind</option>
         <option value="MG">Gyermek</option>
         <option value="YA">Ifjúsági</option>
         <option value="AA">Felnőtt</option>
       </select>
     </div>
-  <div class="row ">
-    <div
-      class="col my-2 d-flex align-items-stretch justify-content-evenly"
-      *ngFor="let book of booksList"
-    >
-      <app-book-item class="d-flex align-items-stretch"
-        [title]="book.title"
-        [author]="book.author"
-        [price]="book.price"
-        [imgUrl]="book.imgUrl"
-        [id]="book.id"
-      ></app-book-item>
+  </div>
+  <div class="row">
+    <div class="col-12 mb-3">
     </div>
-    <!-- <div class="pagination">
-      <button class="btn btn-link" (click)="goToPreviousPage()" [disabled]="currentPage === 1">Previous</button>
-      <span>{{ currentPage }}</span>
-      <button class="btn btn-link" (click)="goToNextPage()" [disabled]="currentPage === totalPages">Next</button>
-    </div> -->
-    
+    <div class="row">
+      <div
+        class="col my-2 d-flex align-items-stretch justify-content-evenly"
+        *ngFor="
+          let book of booksList | paginate : { itemsPerPage: 3, currentPage: p }
+        "
+      >
+        <app-book-item
+          class="d-flex align-items-stretch"
+          [title]="book.title"
+          [author]="book.author"
+          [price]="book.price"
+          [imgUrl]="book.imgUrl"
+          [id]="book.id"
+        ></app-book-item>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5 text-center">
+    <pagination-controls
+      (pageChange)="p = $event"
+      class="books-pagination"
+      previousLabel="Előző"
+      nextLabel="Következő"
+    ></pagination-controls>
   </div>
 </div>

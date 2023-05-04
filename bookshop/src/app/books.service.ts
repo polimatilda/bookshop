@@ -15,40 +15,8 @@ export class BooksService {
   ageCategory$ = this.ageCategorySource.asObservable();
   booksList: BookItem[] = [];
 
-  // getAllBooks(page: number, pageSize: number): Observable<{ books: BookItem[]; totalCount: number }> {
-  //   const params = {
-  //     page: page.toString(),
-  //     pageSize: pageSize.toString(),
-  //   };
-
-  //   return this.http.get<BookItem[]>(`${this.url}/books`, { params }).pipe(
-  //     map((data) => {
-  //       this.booksList = data.map((item) => ({
-  //         id: item.id,
-  //         title: item.title,
-  //         author: item.author,
-  //         bound: item.bound,
-  //         text: item.text,
-  //         price: item.price,
-  //         imgUrl: item.imgUrl,
-  //         isbn: item.isbn,
-  //         publisher: item.publisher,
-  //         ageCategory: item.ageCategory,
-  //         pageNumber: item.pageNumber,
-  //         yearPublished: item.yearPublished,
-  //       }));
-  //       return { books: this.booksList, totalCount: this.booksList.length };
-  //     })
-  //   );
-  // }
-
-  getAllBooks(page: number, pageSize: number): Observable<BookItem[]> {
-    const params = {
-      page: page.toString(),
-      pageSize: pageSize.toString(),
-    };
-
-    return this.http.get<BookItem[]>(`${this.url}/books`, { params }).pipe(
+  getAllBooks(): Observable<BookItem[]> {
+    return this.http.get<BookItem[]>(`${this.url}/books`).pipe(
       map((data) => {
         this.booksList = data.map((item) => ({
           id: item.id,
@@ -77,37 +45,14 @@ export class BooksService {
     this.ageCategorySource.next(ageCategory);
   }
 
-  getBooksByAgeCategory(
-    ageCategory: string,
-    page: number,
-    pageSize: number
-  ): Observable<BookItem[]> {
+  getBooksByAgeCategory(ageCategory: string): Observable<BookItem[]> {
     if (!ageCategory) {
-      return this.getAllBooks(page,pageSize);
+      return this.getAllBooks();
     }
 
     const params = {
       ageCategory,
-      page: page.toString(),
-      pageSize: pageSize.toString(),
     };
     return this.http.get<BookItem[]>(`${this.url}/books`, { params });
   }
-
-  // getBooksByAgeCategory(
-  //   ageCategory: string,
-  //   page: number,
-  //   pageSize: number
-  // ): Observable<{ books: BookItem[]; totalCount: number }> {
-  //   if (!ageCategory) {
-  //     return this.getAllBooks(page, pageSize);
-  //   }
-  
-  //   const params = {
-  //     ageCategory,
-  //     page: page.toString(),
-  //     pageSize: pageSize.toString(),
-  //   };
-  //   return this.http.get<{ books: BookItem[]; totalCount: number }>(`${this.url}/books`, { params });
-  // }
 }
