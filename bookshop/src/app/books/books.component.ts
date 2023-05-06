@@ -14,7 +14,7 @@ export class BooksComponent implements OnInit {
   subscription: Subscription = new Subscription();
   selectedAgeCategory: string = '';
 
-  p: number = 1;
+  page: number = 1;
   collection: any[] = this.booksList;
 
   constructor(
@@ -30,6 +30,7 @@ export class BooksComponent implements OnInit {
   }
 
   filterBooks(ageCategory: string): void {
+    this.page = 1
     this.selectedAgeCategory = ageCategory;
     this.booksService.getBooksByAgeCategory(ageCategory).subscribe((value) => {
       this.booksList = value;

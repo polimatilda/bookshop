@@ -22,7 +22,7 @@
       <div
         class="col my-2 d-flex align-items-stretch justify-content-evenly"
         *ngFor="
-          let book of booksList | paginate : { itemsPerPage: 4, currentPage: p }
+          let book of booksList | paginate : { itemsPerPage: 6, currentPage: page }
         "
       >
         <app-book-item
@@ -38,7 +38,7 @@
   </div>
   <div class="row mt-5 text-center">
     <pagination-controls
-      (pageChange)="p = $event"
+      (pageChange)="page = $event"
       class="books-pagination"
       previousLabel="Előző"
       nextLabel="Következő"

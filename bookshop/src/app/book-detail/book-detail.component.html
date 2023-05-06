@@ -15,7 +15,7 @@
       <p class="book-text">{{ selectedBook.text }}</p>
       <div class="btn-div">
         <h3 class="price">{{ selectedBook.price | number }} Ft</h3>
-        <button class="btn btn-primary cart-btn my-2">Kosárba</button>
+        <button class="btn btn-primary cart-btn my-2" (click)="addToCart(selectedBook)">Kosárba</button>
       </div>
     </div>
   </div>

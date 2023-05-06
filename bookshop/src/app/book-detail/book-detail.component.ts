@@ -26,4 +26,14 @@ export class BookDetailComponent implements OnInit {
     }
   }
 
+  addToCart(selectedBook: BookItem): void {
+    let cartItems: BookItem[] = []
+    const existingCartItems = localStorage.getItem('cartItems')
+    if(existingCartItems) {
+      cartItems = JSON.parse(existingCartItems)
+    }
+    cartItems.push(selectedBook)
+    localStorage.setItem('cartItems', JSON.stringify(cartItems))
+  }
+
 }
