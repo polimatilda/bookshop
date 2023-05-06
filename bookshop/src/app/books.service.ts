@@ -31,6 +31,7 @@ export class BooksService {
           ageCategory: item.ageCategory,
           pageNumber: item.pageNumber,
           yearPublished: item.yearPublished,
+          quantity: item.quantity
         }));
         return this.booksList;
       })

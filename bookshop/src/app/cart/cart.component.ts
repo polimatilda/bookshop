@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookItem } from '../models/book-item.interface';
 
 @Component({
@@ -6,9 +6,12 @@ import { BookItem } from '../models/book-item.interface';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
 
   cartItems: BookItem[] = []
+  totalPrice: number = 0;
+  shippingPrice: number = 1200;
+  totalWithShipping: number = 0;
 
   constructor() {
     const existingCartItems = localStorage.getItem('cartItems');
@@ -17,4 +20,33 @@ export class CartComponent {
     }
   }
 
+  ngOnInit(): void {
+    this.calculateTotalPrice();
+    this.calculateTotalPriceWithShipping();
+  }
+
+  calculateTotalPrice() {
+    this.totalPrice = this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  calculateTotalPriceWithShipping() {
+    this.totalWithShipping = this.totalPrice + this.shippingPrice
+  }
+
+  updatePrice(item: BookItem, newQuantity: number) {
+    item.quantity = newQuantity;
+    this.calculateTotalPrice();
+    this.calculateTotalPriceWithShipping();
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
+  removeItem(item: BookItem) {
+    const index = this.cartItems.indexOf(item);
+    if (index !== -1) {
+      this.cartItems.splice(index, 1);
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+      this.calculateTotalPrice();
+      this.calculateTotalPriceWithShipping();
+    }
+  }
 }

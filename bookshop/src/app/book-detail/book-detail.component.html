@@ -17,6 +17,9 @@
         <h3 class="price">{{ selectedBook.price | number }} Ft</h3>
         <button class="btn btn-primary cart-btn my-2" (click)="addToCart(selectedBook)">Kosárba</button>
       </div>
+      <div class="alert alert-success" role="alert" *ngIf="bookAddedToCartAlert">
+        Könyv a kosárhoz adva!
+      </div>
     </div>
   </div>
   <div class="row w-100 my-2 book-details">

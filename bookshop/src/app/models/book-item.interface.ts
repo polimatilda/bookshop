@@ -11,4 +11,5 @@ export interface BookItem {
   ageCategory: string,
   pageNumber: number,
   yearPublished: number,
+  quantity: number
 }

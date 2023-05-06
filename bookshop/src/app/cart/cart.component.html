@@ -1,7 +1,13 @@
 <section class="h-100 h-custom">
-  <div *ngIf="cartItems.length === 0" class="mt-5 d-flex flex-column align-items-center">
+  <div
+    *ngIf="cartItems.length === 0"
+    class="mt-5 d-flex flex-column align-items-center text-center"
+  >
     <h1>A kosarad üres</h1>
     <h5><a href="/books" class="text-dark">Vásárlás folytatása</a></h5>
+    <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16" class="my-5 opacity-50">
+      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </svg>
   </div>
   <div class="container h-100 py-5" *ngIf="cartItems.length > 0">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -14,6 +20,7 @@
                 <th scope="col">Formátum</th>
                 <th scope="col">Mennyiség</th>
                 <th scope="col">Ár</th>
+                <th scope="col">Törlés</th>
               </tr>
             </thead>
             <tbody>
@@ -21,49 +28,56 @@
                 <th scope="row">
                   <div class="d-flex align-items-center">
                     <img
-                    [src]="'assets/img/' + item.imgUrl + '.jpg'"
+                      [src]="'assets/img/' + item.imgUrl + '.jpg'"
                       class="img-fluid rounded-3"
                       style="width: 120px"
                       alt="Book"
                     />
                     <div class="flex-column ms-4">
-                      <p class="mb-2">{{item.title}}</p>
-                      <p class="mb-0">{{item.author}}</p>
+                      <p class="mb-2">{{ item.title }}</p>
+                      <p class="mb-0">{{ item.author }}</p>
                     </div>
                   </div>
                 </th>
                 <td class="align-middle">
-                  <p class="mb-0" style="font-weight: 500">{{item.bound}}</p>
+                  <p class="mb-0" style="font-weight: 500">{{ item.bound }}</p>
                 </td>
                 <td class="align-middle">
                   <div class="d-flex flex-row">
                     <button
                       class="btn btn-link px-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                      (click)="item.quantity = item.quantity + 1"
                     >
                       <i class="fas fa-minus"></i>
                     </button>
 
                     <input
                       id="form1"
-                      min="0"
+                      min="1"
                       name="quantity"
-                      value="1"
+                      [value]="item.quantity"
                       type="number"
                       class="form-control form-control-sm"
                       style="width: 50px"
+                      [(ngModel)]="item.quantity"
+                      (ngModelChange)="updatePrice(item, $event)"
                     />
 
                     <button
                       class="btn btn-link px-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                      (click)="item.quantity = item.quantity - 1"
                     >
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
                 </td>
                 <td class="align-middle">
-                  <p class="mb-0" style="font-weight: 500">{{item.price | number }} Ft</p>
+                  <p class="mb-0" style="font-weight: 500">
+                    {{ item.price * item.quantity | number }} Ft
+                  </p>
+                </td>
+                <td class="align-middle">
+                  <button class="btn btn-primary px-2" (click)="removeItem(item)">X</button>
                 </td>
               </tr>
             </tbody>
@@ -142,10 +156,10 @@
                         id="typeExp"
                         class="form-control form-control-lg"
                         placeholder="HH/ÉÉ"
-                        size="7"
+                        size="4"
                         id="exp"
-                        minlength="7"
-                        maxlength="7"
+                        minlength="4"
+                        maxlength="4"
                       />
                     </div>
                   </div>
@@ -186,7 +200,7 @@
                   style="font-weight: 500"
                 >
                   <p class="mb-2">Összeg:</p>
-                  <p class="mb-2">Ft</p>
+                  <p class="mb-2">{{ totalPrice | number }} Ft</p>
                 </div>
 
                 <div
@@ -194,7 +208,7 @@
                   style="font-weight: 500"
                 >
                   <p class="mb-0">Szállítás:</p>
-                  <p class="mb-0">1200 Ft</p>
+                  <p class="mb-0">{{ shippingPrice | number }} Ft</p>
                 </div>
 
                 <hr class="my-4" />
@@ -204,13 +218,12 @@
                   style="font-weight: 500"
                 >
                   <p class="mb-2">Fizetendő:</p>
-                  <p class="mb-2">Ft</p>
+                  <p class="mb-2">{{ totalWithShipping | number }} Ft</p>
                 </div>
 
                 <button type="button" class="btn btn-primary btn-block btn-lg">
                   <div class="d-flex justify-content-between">
                     <span>Fizetés</span>
-                    <span>Ft</span>
                   </div>
                 </button>
               </div>
