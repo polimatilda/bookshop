@@ -51,9 +51,22 @@ export class BooksService {
       return this.getAllBooks();
     }
 
+    
     const params = {
       ageCategory,
     };
+    return this.http.get<BookItem[]>(`${this.url}/books`, { params });
+  }
+
+  searchBooks(searchTerm: string): Observable<BookItem[]> {
+    if(!searchTerm) {
+      return this.getAllBooks()
+    }
+
+    const params = {
+      searchTerm, 
+    };
+
     return this.http.get<BookItem[]>(`${this.url}/books`, { params });
   }
 }

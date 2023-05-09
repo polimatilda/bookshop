@@ -1,43 +1,63 @@
 <div class="container my-5 d-flex flex-column w-100">
-  <div class="d-flex alig-items-center justify-content-center mt-2 mb-5">
-    <div class="row w-50">
-      <label for="ageCategoryFilter">Szűrés korosztályra:</label>
-      <select
-        class="form-select"
-        id="ageCategoryFilter"
-        [(ngModel)]="selectedAgeCategory"
-        (ngModelChange)="filterBooks(selectedAgeCategory)"
-      >
-        <option value="">Mind</option>
-        <option value="MG">Gyermek</option>
-        <option value="YA">Ifjúsági</option>
-        <option value="AA">Felnőtt</option>
-      </select>
+  <div class="d-flex alig-items-center justify-content-center mt-2 mb-5 flex-column">
+    <div class="row w-50 filter">
+      <div>
+        <label for="ageCategoryFilter">Szűrés korosztályra:</label>
+        <select
+          class="form-select"
+          id="ageCategoryFilter"
+          [(ngModel)]="selectedAgeCategory"
+          (ngModelChange)="filterBooks(selectedAgeCategory)"
+        >
+          <option value="">Mind</option>
+          <option value="MG">Gyermek</option>
+          <option value="YA">Ifjúsági</option>
+          <option value="AA">Felnőtt</option>
+        </select>
+      </div>
+    </div>
+    <div class="row w-50 mt-3 filter">
+      <form class="d-flex">
+        <input
+          class="form-control me-2"
+          id="search"
+          type="search"
+          placeholder="Keresés a kínálatban..."
+          aria-label="Search"
+          [(ngModel)]="searchTerm"
+          name="searchTerm"
+        />
+        <button class="btn btn-primary" type="submit" (click)="searchBooks(searchTerm)">Keresés</button>
+      </form>
     </div>
   </div>
   <div class="row">
     <div class="col-12 mb-3">
-    </div>
-    <div class="row">
-      <div
-        class="col my-2 d-flex align-items-stretch justify-content-evenly"
-        *ngFor="
-          let book of booksList | paginate : { itemsPerPage: 6, currentPage: page }
-        "
-      >
-        <app-book-item
-          class="d-flex align-items-stretch"
-          [title]="book.title"
-          [author]="book.author"
-          [price]="book.price"
-          [imgUrl]="book.imgUrl"
-          [id]="book.id"
-        ></app-book-item>
+      <div class="row">
+        <div *ngIf="booksList.length === 0" class="col my-2 text-center alert alert-warning" role="alert">
+            Nincs a keresésnek megfelelő találat!
+        </div>
+        <div
+          class="col my-2 d-flex align-items-stretch justify-content-evenly"
+          *ngFor="
+            let book of booksList | paginate : { itemsPerPage: 6, currentPage: page }
+          "
+        >
+          <app-book-item
+            class="d-flex align-items-stretch"
+            [title]="book.title"
+            [author]="book.author"
+            [price]="book.price"
+            [imgUrl]="book.imgUrl"
+            [id]="book.id"
+          ></app-book-item>
+        </div>
       </div>
     </div>
   </div>
   <div class="row mt-5 text-center">
     <pagination-controls
+      *ngIf="booksList.length > 5"
       (pageChange)="page = $event"
       class="books-pagination"
       previousLabel="Előző"
