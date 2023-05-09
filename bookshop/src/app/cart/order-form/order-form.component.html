@@ -1,0 +1,175 @@
+<form (ngSubmit)="onPlaceOrder()" [formGroup]="orderDataForm">
+  <div class="card shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px">
+    <h5 class="m-3">Megrendelési adatok</h5>
+    <div class="card-body p-4">
+      <div class="row">
+        <div class="col mb-4 mb-md-0 d-flex flex-column justify-content-center">
+          <div class="row">
+            <div class="col-12 col-xl-6">
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="full-name">Teljes név:</label>
+                <input
+                  type="text"
+                  id="full-name"
+                  class="form-control form-control-lg"
+                  placeholder="Cserepes Virág"
+                  formControlName="name"
+                />
+              </div>
+
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="email">E-mail cím:</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control form-control-lg"
+                  placeholder="pelda@email.com"
+                  formControlName="email"
+                />
+              </div>
+
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="phone">Telefonszám:</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  class="form-control form-control-lg"
+                  placeholder="+36 70 123 4567"
+                  formControlName="phone"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-xl-6">
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="city">Város:</label>
+                <input
+                  type="text"
+                  id="city"
+                  class="form-control form-control-lg"
+                  placeholder="Budapest"
+                  formControlName="city"
+                />
+              </div>
+
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="address">Utca és házszám:</label>
+                <input
+                  type="text"
+                  id="address"
+                  class="form-control form-control-lg"
+                  placeholder="Példa utca 12. 3/B"
+                  formControlName="address"
+                />
+              </div>
+
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="postal-code"
+                  >Irányítószám:</label
+                >
+                <input
+                  type="pin"
+                  id="postal-code"
+                  class="form-control form-control-lg"
+                  placeholder="1111"
+                  formControlName="postal"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-2-strong mt-3 mb-lg-0" style="border-radius: 16px">
+    <div class="card-body p-4">
+      <div class="row">
+        <div class="col">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-xl-6">
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="name-on-card"
+                  >Kártyán szereplő név:</label
+                >
+                <input
+                  type="text"
+                  id="name-on-card"
+                  class="form-control form-control-lg"
+                  placeholder="John Smith"
+                />
+              </div>
+
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="expiration"
+                  >Lejárati dátum:</label
+                >
+                <input
+                  type="text"
+                  id="expiration"
+                  class="form-control form-control-lg"
+                  placeholder="HH/ÉÉ"
+                  size="4"
+                  id="exp"
+                  minlength="4"
+                  maxlength="4"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-xl-6">
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="card-number">Kártyaszám:</label>
+                <input
+                  type="text"
+                  id="card-number"
+                  class="form-control form-control-lg"
+                  placeholder="1111 2222 3333 4444"
+                />
+              </div>
+
+              <div class="form-outline mb-4 mb-xl-5">
+                <label class="form-label" for="cvc">CVC:</label>
+                <input
+                  type="password"
+                  id="cvc"
+                  class="form-control form-control-lg"
+                  placeholder="&#9679;&#9679;&#9679;"
+                  size="1"
+                  minlength="3"
+                  maxlength="3"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-xl-3">
+          <div class="d-flex justify-content-between" style="font-weight: 500">
+            <p class="mb-2">Összeg:</p>
+            <p class="mb-2">{{ totalPrice | number }} Ft</p>
+          </div>
+
+          <div class="d-flex justify-content-between" style="font-weight: 500">
+            <p class="mb-0">Szállítás:</p>
+            <p class="mb-0">{{ shippingPrice | number }} Ft</p>
+          </div>
+
+          <hr class="my-4" />
+
+          <div
+            class="d-flex justify-content-between mb-4"
+            style="font-weight: 500"
+          >
+            <p class="mb-2">Fizetendő:</p>
+            <p class="mb-2">{{ totalWithShipping | number }} Ft</p>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-lg d-flex justify-content-between"
+          >
+            Megrendelés
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

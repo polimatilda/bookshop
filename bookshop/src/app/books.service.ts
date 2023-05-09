@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { BookItem } from './models/book-item.interface';
+import { OrderItem } from './models/order.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -68,5 +69,9 @@ export class BooksService {
     };
 
     return this.http.get<BookItem[]>(`${this.url}/books`, { params });
+  }
+
+  orderBooks(order: OrderItem): Observable<OrderItem> {
+    return this.http.post<OrderItem>(`${this.url}/orders`, order);
   }
 }

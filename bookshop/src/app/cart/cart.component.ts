@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { BookItem } from '../models/book-item.interface';
+import { BooksService } from '../books.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-
-  cartItems: BookItem[] = []
+  cartItems: BookItem[] = [];
   totalPrice: number = 0;
   shippingPrice: number = 1200;
   totalWithShipping: number = 0;
 
-  constructor() {
+  constructor(private readonly booksService: BooksService) {
     const existingCartItems = localStorage.getItem('cartItems');
     if (existingCartItems) {
       this.cartItems = JSON.parse(existingCartItems);
@@ -26,11 +26,14 @@ export class CartComponent implements OnInit {
   }
 
   calculateTotalPrice() {
-    this.totalPrice = this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    this.totalPrice = this.cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   }
 
   calculateTotalPriceWithShipping() {
-    this.totalWithShipping = this.totalPrice + this.shippingPrice
+    this.totalWithShipping = this.totalPrice + this.shippingPrice;
   }
 
   updatePrice(item: BookItem, newQuantity: number) {
