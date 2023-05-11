@@ -301,6 +301,11 @@
       "quantity": 1
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "username": "admin",
+      "hash": "$2b$11$opE6n7ehIB6EtWZmBphhc.DqGjxJM9NxFHiZG99Vz1mG2ii8vFWlu"
+    }
+  ],
   "orders": []
 }
