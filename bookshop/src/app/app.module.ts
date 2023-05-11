@@ -8,6 +8,10 @@ import { BooksModule } from './books/books.module';
 import { BooksService } from './books.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BookDetailModule } from './book-detail/book-detail.module';
+import { CartModule } from './cart/cart.module';
+import { CoreModule } from './core/core.module';
+import { RegistrationModule } from './registration/registration.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { BookDetailModule } from './book-detail/book-detail.module';
     AppRoutingModule,
     BooksModule,
     HttpClientModule,
-    BookDetailModule
+    BookDetailModule,
+    CartModule,
+    CoreModule,
+    RegistrationModule,
+    LoginModule
   ],
   providers: [BooksService],
   bootstrap: [AppComponent]
