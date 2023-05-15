@@ -1,4 +1,7 @@
 <app-navbar></app-navbar>
+<div *ngIf="!isCookieAccepted()">
+  <app-cookie-alert class="cookie-alert"></app-cookie-alert>
+</div>
 <div class="container d-flex justify-content-center align-items-center">
   <router-outlet></router-outlet>
 </div>

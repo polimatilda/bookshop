@@ -12,11 +12,13 @@ import { CartModule } from './cart/cart.module';
 import { CoreModule } from './core/core.module';
 import { RegistrationModule } from './registration/registration.module';
 import { LoginModule } from './login/login.module';
+import { CookieAlertComponent } from './cookie-alert/cookie-alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    CookieAlertComponent,
   ],
   imports: [
     BrowserModule,
