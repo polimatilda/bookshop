@@ -13,10 +13,7 @@ const saltRounds = 11;
 
 server.use(middlewares);
 
-server.use((req, res, next) => {
-  if (req.url === "/login" || req.url === "/registration") {
-    return next();
-  }
+const authenticate = (req, res, next) => {
   const token = req.header("Authorization");
   if (!token) return res.status(401).send("Access Denied");
 
@@ -27,6 +24,27 @@ server.use((req, res, next) => {
   } catch (error) {
     res.status(400).send("Invalid token");
   }
+};
+
+server.use((req, res, next) => {
+  // if (req.url === "/login" || req.url === "/registration") {
+  //   return next();
+  // }
+  // const token = req.header("Authorization");
+  // if (!token) return res.status(401).send("Access Denied");
+
+  // try {
+  //   const verified = jwt.verify(token, SECRET);
+  //   req.user = verified;
+  //   next();
+  // } catch (error) {
+  //   res.status(400).send("Invalid token");
+  // }
+
+  if (req.url === "/login" || req.url === "/registration" || req.url.startsWith("/books")) {
+    return next();
+  }
+  authenticate(req, res, next);
 });
 
 server.use(jsonServer.bodyParser);
