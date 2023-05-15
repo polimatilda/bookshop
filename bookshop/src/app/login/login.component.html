@@ -6,13 +6,14 @@
           <div class="card-body p-5">
             <h2 class="text-uppercase text-center mb-5">Bejelentkezés</h2>
 
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="form-outline mb-4">
                 <label class="form-label" for="username">Felhasználónév:</label>
                 <input
                   type="text"
                   id="username"
                   class="form-control form-control-lg"
+                  formControlName="username"
                 />
               </div>
               <div class="form-outline mb-4">
@@ -21,11 +22,12 @@
                   type="password"
                   id="password"
                   class="form-control form-control-lg"
+                  formControlName="password"
                 />
               </div>
               <div class="d-flex justify-content-center">
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-primary btn-block btn-lg text-body"
                 >
                   Bejelentkezés
