@@ -74,4 +74,8 @@ export class BooksService {
   orderBooks(order: OrderItem): Observable<OrderItem> {
     return this.http.post<OrderItem>(`${this.url}/orders`, order);
   }
+
+  deleteBook(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/books/${id}`);
+  }
 }

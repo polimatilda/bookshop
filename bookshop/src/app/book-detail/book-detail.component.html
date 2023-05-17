@@ -20,6 +20,9 @@
       <div class="alert alert-success text-center" role="alert" *ngIf="bookAddedToCartAlert">
         Könyv a kosárhoz adva!
       </div>
+      <div *ngIf="showDeleteBtn()" class="btn-div mt-5">
+        <button class="btn btn-danger cart-btn my-2" (click)="deleteBook()">Törlés</button>
+      </div>
     </div>
   </div>
   <div class="row w-100 my-2 book-details">

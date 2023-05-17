@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../books.service';
 import { BookItem } from '../models/book-item.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -14,7 +15,9 @@ export class BookDetailComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly booksService: BooksService
+    private readonly booksService: BooksService,
+    private readonly authService: AuthService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -36,5 +39,17 @@ export class BookDetailComponent implements OnInit {
     cartItems.push(selectedBook);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     this.bookAddedToCartAlert = true
+  }
+
+  showDeleteBtn(): boolean {
+    return this.authService.isLoggedIn() ? true : false
+  }
+
+  deleteBook(): void {
+    if(this.selectedBook) {
+      this.booksService.deleteBook(this.selectedBook.id).subscribe(() => {
+        this.router.navigate(['books']);
+      })
+    }
   }
 }
