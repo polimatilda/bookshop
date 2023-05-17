@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment.development';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { BookItem } from './models/book-item.interface';
 import { OrderItem } from './models/order.interface';
+import { NewBookItem } from './models/new-book-item.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -77,5 +78,9 @@ export class BooksService {
 
   deleteBook(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/books/${id}`);
+  }
+
+  addBook(book: NewBookItem): Observable<BookItem> {
+    return this.http.post<BookItem>(`${this.url}/books`, book)
   }
 }

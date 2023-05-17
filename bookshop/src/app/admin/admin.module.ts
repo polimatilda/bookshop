@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminGuard } from './admin.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +12,7 @@ import { AdminGuard } from './admin.guard';
     AdminComponent
   ],
   imports: [
-    CommonModule, AdminRoutingModule
+    CommonModule, AdminRoutingModule, ReactiveFormsModule, FormsModule
   ],
   providers: [AdminGuard]
 })
