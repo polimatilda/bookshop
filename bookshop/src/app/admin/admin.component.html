@@ -6,22 +6,22 @@
   <form (ngSubmit)="addBook()" [formGroup]="newBookDataForm">
     <div class="form-group">
       <label for="title">Cím:</label>
-      <input type="text" class="form-control" id="title" placeholder="A villámtolvaj"  formControlName="title">
+      <input type="text" class="form-control" id="title" placeholder="A villámtolvaj" formControlName="title" required>
     </div>
     <div class="form-group">
       <label for="author">Szerző:</label>
-      <input type="text" class="form-control" id="author" placeholder="Rick Riordan"  formControlName="author">
+      <input type="text" class="form-control" id="author" placeholder="Rick Riordan" formControlName="author" required>
     </div>
     <div class="form-group">
       <label for="bound">Kötés</label>
-      <select class="form-control" id="bound"  formControlName="bound">
+      <select class="form-control" id="bound"  formControlName="bound" required>
         <option>puhatáblás</option>
         <option>keménytáblás</option>
       </select>
     </div>
     <div class="form-group">
       <label for="ageCategory">Korkategória:</label>
-      <select class="form-control" id="ageCategory"  formControlName="ageCategory">
+      <select class="form-control" id="ageCategory"  formControlName="ageCategory" required>
         <option>MG</option>
         <option>YA</option>
         <option>AA</option>
@@ -29,31 +29,31 @@
     </div>
     <div class="form-group">
       <label for="text">Fülszöveg:</label>
-      <textarea class="form-control" id="text" rows="3"  formControlName="text"></textarea>
+      <textarea class="form-control" id="text" rows="3"  formControlName="text" required></textarea>
     </div>
     <div class="form-group">
       <label for="price">Ár:</label>
-      <input type="number" class="form-control" id="price"  formControlName="price">
+      <input type="number" class="form-control" id="price"  formControlName="price" required>
     </div>
     <div class="form-group">
       <label for="pageNumber">Oldalszám:</label>
-      <input type="number" class="form-control" id="pageNumber"  formControlName="pageNumber">
+      <input type="number" class="form-control" id="pageNumber"  formControlName="pageNumber" required>
     </div>
     <div class="form-group">
       <label for="publisher">Kiadó:</label>
-      <input type="text" class="form-control" id="publisher" placeholder="Könyvmolyképző"  formControlName="publisher">
+      <input type="text" class="form-control" id="publisher" placeholder="Könyvmolyképző"  formControlName="publisher" required>
     </div>
     <div class="form-group">
       <label for="isbn">ISBN:</label>
-      <input type="text" class="form-control" id="isbn" placeholder="9789632450018"  formControlName="isbn">
+      <input type="text" class="form-control" id="isbn" placeholder="9789632450018"  formControlName="isbn" required>
     </div>
     <div class="form-group">
       <label for="yearPublished">Kiadás éve:</label>
-      <input type="number" class="form-control" id="yearPublished"  formControlName="yearPublished">
+      <input type="number" class="form-control" id="yearPublished"  formControlName="yearPublished" required>
     </div>
     <div class="form-group">
       <label for="imgUrl">Kép neve:</label>
-      <input type="text" class="form-control" id="imgUrl" placeholder="villamtolvaj"  formControlName="imgUrl">
+      <input type="text" class="form-control" id="imgUrl" placeholder="villamtolvaj"  formControlName="imgUrl" required>
     </div>
     <div class="d-flex flex-column justify-content-center align-items-end">
       <button type="submit" class="btn btn-primary mt-3">Hozzáadás</button>

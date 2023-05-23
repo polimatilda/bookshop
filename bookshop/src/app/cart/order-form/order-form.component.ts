@@ -44,21 +44,25 @@ export class OrderFormComponent implements OnInit {
 
   onPlaceOrder() {
     console.log(this.orderDataForm.valid);
-    const orderData: OrderItem = {
-      name: this.orderDataForm.value.name,
-      email: this.orderDataForm.value.email,
-      phone: this.orderDataForm.value.phone,
-      city: this.orderDataForm.value.city,
-      address: this.orderDataForm.value.address,
-      postal: this.orderDataForm.value.postal,
-      payableAmount: this.totalWithShipping,
-      books: this.cartItems,
-    };
-
-    this.booksService.orderBooks(orderData).subscribe((order) => {
-      this.orderDataForm.reset();
-      window.alert('Rendelése elküldésre került!');
-      this.router.navigate(['books']);
-    });
+    if(this.orderDataForm.valid) {
+      const orderData: OrderItem = {
+        name: this.orderDataForm.value.name,
+        email: this.orderDataForm.value.email,
+        phone: this.orderDataForm.value.phone,
+        city: this.orderDataForm.value.city,
+        address: this.orderDataForm.value.address,
+        postal: this.orderDataForm.value.postal,
+        payableAmount: this.totalWithShipping,
+        books: this.cartItems,
+      };
+  
+      this.booksService.orderBooks(orderData).subscribe((order) => {
+        this.orderDataForm.reset();
+        window.alert('Rendelése elküldésre került!');
+        this.router.navigate(['books']);
+      });
+    } else {
+      window.alert('Töltsön ki minend mezőt!')
+    }
   }
 }
