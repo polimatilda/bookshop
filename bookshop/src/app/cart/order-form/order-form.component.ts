@@ -44,6 +44,7 @@ export class OrderFormComponent implements OnInit {
 
   onPlaceOrder() {
     console.log(this.orderDataForm.valid);
+
     if(this.orderDataForm.valid) {
       const orderData: OrderItem = {
         name: this.orderDataForm.value.name,
@@ -56,11 +57,13 @@ export class OrderFormComponent implements OnInit {
         books: this.cartItems,
       };
   
-      this.booksService.orderBooks(orderData).subscribe((order) => {
+      this.booksService.orderBooks(orderData).subscribe(() => {
         this.orderDataForm.reset();
         window.alert('Rendelése elküldésre került!');
+        localStorage.removeItem('cartItems');
         this.router.navigate(['books']);
       });
+
     } else {
       window.alert('Töltsön ki minend mezőt!')
     }
