@@ -6,7 +6,10 @@
     <div
       class="col-lg-5 d-flex align-items-center justify-content-center flex-column"
     >
-        <img [src]="'assets/img/' + selectedBook.imgUrl + '.jpg'" class="book-img"/>
+      <img
+        [src]="'assets/img/' + selectedBook.imgUrl + '.jpg'"
+        class="book-img"
+      />
     </div>
     <div class="col-lg-7 d-flex flex-column my-3">
       <h1>{{ selectedBook.title }}</h1>
@@ -15,13 +18,24 @@
       <p class="book-text">{{ selectedBook.text }}</p>
       <div class="btn-div">
         <h3 class="price">{{ selectedBook.price | number }} Ft</h3>
-        <button class="btn btn-primary cart-btn my-2" (click)="addToCart(selectedBook)">Kosárba</button>
+        <button
+          class="btn btn-primary cart-btn my-2"
+          (click)="addToCart(selectedBook)"
+        >
+          Kosárba
+        </button>
       </div>
-      <div class="alert alert-success text-center" role="alert" *ngIf="bookAddedToCartAlert">
+      <div
+        class="alert alert-success text-center"
+        role="alert"
+        *ngIf="bookAddedToCartAlert"
+      >
         Könyv a kosárhoz adva!
       </div>
-      <div *ngIf="showDeleteBtn()" class="btn-div mt-5">
-        <button class="btn btn-danger cart-btn my-2" (click)="deleteBook()">Törlés</button>
+      <div *ngIf="isAdminLoggedIn()" class="btn-div mt-5">
+        <button class="btn btn-danger cart-btn my-2" (click)="deleteBook()">
+          Törlés
+        </button>
       </div>
     </div>
   </div>
@@ -34,5 +48,12 @@
       <h6>ISBN: {{ selectedBook.isbn }}</h6>
       <h6>Kiadás éve: {{ selectedBook.yearPublished }}</h6>
     </span>
+  </div>
+  <div *ngIf="isAdminLoggedIn()" class="my-5 row w-100">
+    <app-edit-book-detail
+      [selectedBook]="selectedBook"
+      (updatedBook)="updateSelectedBook($event)"
+      class="d-flex align-items-center justify-content-center"
+    ></app-edit-book-detail>
   </div>
 </div>

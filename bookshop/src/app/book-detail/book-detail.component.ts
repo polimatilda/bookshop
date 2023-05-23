@@ -41,7 +41,7 @@ export class BookDetailComponent implements OnInit {
     this.bookAddedToCartAlert = true
   }
 
-  showDeleteBtn(): boolean {
+  isAdminLoggedIn(): boolean {
     return this.authService.isLoggedIn() ? true : false
   }
 
@@ -51,5 +51,9 @@ export class BookDetailComponent implements OnInit {
         this.router.navigate(['books']);
       })
     }
+  }
+
+  updateSelectedBook(book: BookItem): void {
+    this.selectedBook = book;
   }
 }

@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminGuard } from './admin.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BooksService } from '../books.service';
 
 
 
@@ -14,6 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule, AdminRoutingModule, ReactiveFormsModule, FormsModule
   ],
-  providers: [AdminGuard]
+  providers: [AdminGuard, BooksService]
 })
 export class AdminModule { }

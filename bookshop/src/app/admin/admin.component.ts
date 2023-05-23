@@ -29,7 +29,6 @@ export class AdminComponent implements OnInit {
       ageCategory: ['', Validators.required],
       pageNumber: [0, Validators.required],
       yearPublished: [0, Validators.required],
-      quantity: [0, Validators.required]
     });
   }
 

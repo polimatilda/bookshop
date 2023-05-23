@@ -1,8 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common'
-import { BooksService } from 'src/app/books.service';
-import { Router } from '@angular/router';
-import { BookItem } from 'src/app/models/book-item.interface';
+import { Component, Input } from '@angular/core';
 
 
 @Component({
@@ -10,7 +6,7 @@ import { BookItem } from 'src/app/models/book-item.interface';
   templateUrl: './book-item.component.html',
   styleUrls: ['./book-item.component.scss']
 })
-export class BookItemComponent implements OnInit {
+export class BookItemComponent  {
   
   @Input()
   title: string = ""
@@ -26,8 +22,5 @@ export class BookItemComponent implements OnInit {
 
   @Input()
   id: number = 0
-  
-  ngOnInit(): void {
 
-  }
 }

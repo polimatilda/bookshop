@@ -83,4 +83,8 @@ export class BooksService {
   addBook(book: NewBookItem): Observable<BookItem> {
     return this.http.post<BookItem>(`${this.url}/books`, book)
   }
+
+  editBook(book: BookItem, id: number): Observable<BookItem> {
+    return this.http.put<BookItem>(`${this.url}/books/${id}`, book)
+  }
 }
