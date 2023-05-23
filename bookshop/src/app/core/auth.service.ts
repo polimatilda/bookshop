@@ -29,6 +29,10 @@ export class AuthService {
     });
   }
 
+  logout(): void {
+    this.cookieService.delete('token');
+  }
+
   isLoggedIn() {
     return this.cookieService.check('token');
   }

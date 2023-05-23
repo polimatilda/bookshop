@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../books.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewBookItem } from '../models/new-book-item.interface';
+import { AuthService } from '../core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -14,6 +16,8 @@ export class AdminComponent implements OnInit {
   constructor(
     private readonly bookService: BooksService,
     private readonly fb: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +56,11 @@ export class AdminComponent implements OnInit {
     this.bookService.addBook(newBookData).subscribe(() => {
       window.alert("Könyv sikeresen hozzáadva az adatbázishoz!")
     })
+  }
+
+  logout(): void {
+    this.authService.logout()
+    this.router.navigate(['login']);
   }
 
   //TODO: fájlfeltöltést lekezelni
