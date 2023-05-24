@@ -26,7 +26,7 @@ export class AdminComponent implements OnInit {
       author: ['', Validators.required],
       bound: ['', Validators.required],
       text: ['', Validators.required],
-      price: ['', Validators.required],
+      price: [0, Validators.required],
       imgUrl: ['', Validators.required],
       isbn: ['', Validators.required],
       publisher: ['', Validators.required],

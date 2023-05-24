@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditBookDetailComponent } from './edit-book-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('EditBookDetailComponent', () => {
   let component: EditBookDetailComponent;
@@ -8,7 +10,8 @@ describe('EditBookDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditBookDetailComponent ]
+      declarations: [ EditBookDetailComponent ],
+      imports: [HttpClientModule, ReactiveFormsModule]
     })
     .compileComponents();
 
