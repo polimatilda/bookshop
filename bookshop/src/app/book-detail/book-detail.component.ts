@@ -12,7 +12,7 @@ import { AuthService } from '../core/auth.service';
 export class BookDetailComponent implements OnInit {
   selectedBook: BookItem | null = null;
   bookAddedToCartAlert: boolean = false
-
+  
   constructor(
     private readonly route: ActivatedRoute,
     private readonly booksService: BooksService,
