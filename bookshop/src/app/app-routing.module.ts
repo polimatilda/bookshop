@@ -21,8 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    loadChildren: () =>
-      import('./cart/cart.module').then((m) => m.CartModule),
+    loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
   },
   {
     path: 'login',
@@ -39,9 +38,12 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-      import('./admin/admin.module').then(
-        (m) => m.AdminModule
-      ),
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
 ];
 

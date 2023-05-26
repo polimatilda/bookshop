@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { RegistrationModule } from './registration/registration.module';
 import { LoginModule } from './login/login.module';
 import { CookieAlertComponent } from './cookie-alert/cookie-alert.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CookieAlertComponent } from './cookie-alert/cookie-alert.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     BooksModule,
     HttpClientModule,
