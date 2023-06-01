@@ -33,7 +33,12 @@ export class CartComponent implements OnInit {
   }
 
   calculateTotalPriceWithShipping() {
-    this.totalWithShipping = this.totalPrice + this.shippingPrice;
+    if(this.totalPrice > 15000) {
+      this.shippingPrice = 0
+    } else {
+      this.shippingPrice = 1200;
+      this.totalWithShipping = this.totalPrice + this.shippingPrice;
+    }
   }
 
   updatePrice(item: BookItem, newQuantity: number) {
