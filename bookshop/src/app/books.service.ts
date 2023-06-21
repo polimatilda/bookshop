@@ -13,8 +13,8 @@ export class BooksService {
   constructor(private readonly http: HttpClient) {}
 
   private readonly url = environment.backendUrl;
-  private ageCategorySource = new BehaviorSubject<string>('');
-  ageCategory$ = this.ageCategorySource.asObservable();
+  // private ageCategorySource = new BehaviorSubject<string>('');
+  // ageCategory$ = this.ageCategorySource.asObservable();
   booksList: BookItem[] = [];
 
   getAllBooks(): Observable<BookItem[]> {
@@ -44,16 +44,15 @@ export class BooksService {
     return this.http.get<BookItem | null>(`${this.url}/books/${id}`);
   }
 
-  setAgeCategory(ageCategory: string): void {
-    this.ageCategorySource.next(ageCategory);
-  }
+  // setAgeCategory(ageCategory: string): void {
+  //   this.ageCategorySource.next(ageCategory);
+  // }
 
   getBooksByAgeCategory(ageCategory: string): Observable<BookItem[]> {
     if (!ageCategory) {
       return this.getAllBooks();
     }
 
-    
     const params = {
       ageCategory,
     };

@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit {
         window.alert('Könyv sikeresen hozzáadva az adatbázishoz!');
       });
     } else {
-      window.alert('Töltsön ki minend mezőt!')
+      window.alert('Töltsön ki minden mezőt!')
     }
   }
 

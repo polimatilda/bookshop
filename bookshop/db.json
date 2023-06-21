@@ -79,7 +79,7 @@
       "id": 6,
       "title": "Csak így tovább",
       "author": "Rainbow Rowell",
-      "bound": "keménytáblás",
+      "bound": "puhatáblás",
       "text": "Simon Snow a legbénább Kiválasztott, akit valaha kiválasztottak. Ez szobatársa, Baz szerint is így van. És lehet, hogy ő egy kibírhatatlan, törtető vámpír, de úgy tűnik, nem téved. Simon gyakran a varázspálcáját sem tudja működésre bírni, és többször gyújt fel dolgokat, mint ami egészséges. Mestere, a Mágus kerüli és titkolózik előtte, kapcsolata a barátnőjével mintha megfeneklett volna, és ha Baz valóban az esküdt ellensége, vajon miért tölti el aggodalommal, hogy nem jelent meg a tanévkezdésre? Ráadásul a teljes Mágusvilág életét évek óta fenyegeti egy mágiaevő szörnyeteg, az Alattomos Üresség, aki nem mellesleg egy az egyben úgy néz ki, mint Simon. A prófécia szerint Snow fogja legyőzni a pusztító gonoszt, de hogy miként, az egyelőre mindenki számára rejtély, beleértve magát Simont is. De ha az ember a világ leghatalmasabb erejű mágusa, akkor a szellemektől, veszélyektől és titkoktól mentes élet szóba se jöhet…",
       "price": 4995,
       "imgUrl": "carryon",
@@ -305,7 +305,12 @@
     {
       "username": "admin",
       "hash": "$2b$11$opE6n7ehIB6EtWZmBphhc.DqGjxJM9NxFHiZG99Vz1mG2ii8vFWlu"
+    },
+    {
+      "username": "admin2",
+      "hash": "$2b$11$HRWraM4ZhjZl9RS66IfqkeYBUO79oPXJpNN.xHIuJWmIPLbNRf5F2"
     }
   ],
-  "orders": []
+  "orders": [
+  ]
 }

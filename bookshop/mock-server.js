@@ -41,7 +41,7 @@ server.use((req, res, next) => {
   //   res.status(400).send("Invalid token");
   // }
 
-  if (req.url === "/login" || req.url === "/registration" || req.url.startsWith("/books")) {
+  if (req.url === "/login" || req.url === "/registration" || req.url.startsWith("/books") || req.url.startsWith("/orders")) {
     return next();
   }
   authenticate(req, res, next);

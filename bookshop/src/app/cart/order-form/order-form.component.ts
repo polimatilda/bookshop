@@ -65,7 +65,7 @@ export class OrderFormComponent implements OnInit {
       });
 
     } else {
-      window.alert('Töltsön ki minend mezőt!')
+      window.alert('Töltsön ki minden mezőt!')
     }
   }
 }
